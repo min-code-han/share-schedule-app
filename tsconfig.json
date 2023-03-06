@@ -11,8 +11,10 @@
     "resolveJsonModule": true,
     "declaration": true,
     "declarationDir": "./types",
-    "lib": ["es6", "dom"]
+    "lib": ["es6", "dom"],
+    "jsx": "react"
   },
+  "typeRoots": ["images"],
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
