@@ -1,7 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Main from "./Main"
+import GlobalStyle from "./style/GlobalStyle"
+import Main from "./pages/Main"
 
 const router = createBrowserRouter([
   {
@@ -16,4 +17,9 @@ const router = createBrowserRouter([
 
 // @ts-ignore
 const root = ReactDOM.createRoot(document.querySelector("#root"))
-root.render(<RouterProvider router={router} />)
+root.render(
+  <>
+    <GlobalStyle />
+    <RouterProvider router={router} />
+  </>
+)
