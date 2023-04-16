@@ -48,4 +48,4 @@ export const MintTextField = styled(TextField)({
       }
     }
   }
-}) as typeof TextField
+})
