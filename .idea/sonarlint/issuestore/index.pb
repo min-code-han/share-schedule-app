@@ -11,8 +11,6 @@ A
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 =
 tsconfig.json,6/1/61ebb9fd6e8cf9082658121d5d81e297791dacd0
-H
-src/style/GlobalStyle.ts,6/3/638bda75b314f67eff8061288124acda2bec022d
 J
 .idea/jsLinters/eslint.xml,e/b/eb1f02ca8ef3d0da59c956a13898780dee950d48
 S

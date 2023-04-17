@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import styled from "@emotion/styled"
 import { Clock } from "../components/TimePicker"
-import { dividerClasses, TextField } from "@mui/material"
+import { TextField } from "@mui/material"
 import dayjs from "dayjs"
+import { ScheduleList } from "../components/SceduleList"
 
 export interface selectedTimeField {
   hour: number
@@ -10,7 +11,7 @@ export interface selectedTimeField {
   isAm: boolean
 }
 
-interface scheduleListField {
+export interface scheduleListField {
   isAm: string
   title: string
   hour: number
@@ -43,6 +44,14 @@ const Main = () => {
     ]
 
     setScheduleList(_schedule)
+    handleAlert(_schedule[_schedule.length - 1])
+  }
+
+  const handleAlert = (schedule: scheduleListField) => {
+    if (schedule.title === "") {
+      window.alert("스케줄 이름을 작성해 주세요")
+      setScheduleList(scheduleList)
+    }
   }
 
   return (
@@ -63,17 +72,7 @@ const Main = () => {
         <TimePickerWrap>
           <Clock selectedTimeCallback={setSelectedTime} handleSave={handleSave} />
         </TimePickerWrap>
-        {scheduleList.length > 0 &&
-          scheduleList.map((list, idx) => {
-            return (
-              <div key={idx}>
-                <span>{list.isAm}</span>
-                <span>{list.hour}</span>
-                <span>{list.min}</span>
-                <span>{list.title}</span>
-              </div>
-            )
-          })}
+        {scheduleList.length > 0 && <ScheduleList scheduleListData={scheduleList} />}
       </Wrap>
     </MainContainer>
   )
@@ -83,12 +82,12 @@ export default Main
 
 const MainContainer = styled.div`
   padding: 20px 30px;
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
   background-color: #f0f0e8;
 
   .title-input {
-    width: 300px;
+    width: 370px;
   }
 `
 const Wrap = styled.div`

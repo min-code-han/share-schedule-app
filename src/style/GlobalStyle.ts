@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     body{
         padding: 0;
         margin: 0;
-        font-family: 'Noto Sans KR', sans-serif;
+        font-family: 'Pretty_Left_handed', sans-serif;
     };
     html {
     -webkit-tap-highlight-color: rgba($color: #000000, $alpha: 0);
