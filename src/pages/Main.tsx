@@ -1,14 +1,48 @@
 import React, { useState } from "react"
 import styled from "@emotion/styled"
-import { Time } from "../components/TimePicker"
-import { TextField } from "@mui/material"
+import { Clock } from "../components/TimePicker"
+import { dividerClasses, TextField } from "@mui/material"
+import dayjs from "dayjs"
+
+export interface selectedTimeField {
+  hour: number
+  min: number
+  isAm: boolean
+}
+
+interface scheduleListField {
+  isAm: string
+  title: string
+  hour: number
+  min: number
+}
 
 const Main = () => {
   const [title, setTitle] = useState<string>("")
+  const [selectedTime, setSelectedTime] = useState({
+    hour: dayjs().hour(),
+    min: dayjs().minute(),
+    isAm: true
+  })
+  const [scheduleList, setScheduleList] = useState<scheduleListField[]>([])
 
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     setTitle(value)
+  }
+
+  const handleSave = () => {
+    const _schedule = [
+      ...scheduleList,
+      {
+        title,
+        hour: selectedTime.hour,
+        min: selectedTime.min,
+        isAm: selectedTime.isAm ? "AM" : "PM"
+      }
+    ]
+
+    setScheduleList(_schedule)
   }
 
   return (
@@ -23,9 +57,23 @@ const Main = () => {
           value={title}
           onChange={handleTitle}
         />
+        <Time>
+          {selectedTime.isAm ? "AM" : "PM"} {selectedTime.hour} : {selectedTime.min}
+        </Time>
         <TimePickerWrap>
-          <Time />
+          <Clock selectedTimeCallback={setSelectedTime} handleSave={handleSave} />
         </TimePickerWrap>
+        {scheduleList.length > 0 &&
+          scheduleList.map((list, idx) => {
+            return (
+              <div key={idx}>
+                <span>{list.isAm}</span>
+                <span>{list.hour}</span>
+                <span>{list.min}</span>
+                <span>{list.title}</span>
+              </div>
+            )
+          })}
       </Wrap>
     </MainContainer>
   )
@@ -50,6 +98,12 @@ const Wrap = styled.div`
 const Title = styled.p`
   font-size: 4rem;
   font-weight: 800;
+`
+
+const Time = styled.p`
+  margin-top: 30px;
+  font-size: 2rem;
+  font-weight: 600;
 `
 
 const TimePickerWrap = styled.div`
