@@ -4,6 +4,7 @@ import { Clock } from "../components/TimePicker"
 import { TextField } from "@mui/material"
 import dayjs from "dayjs"
 import { ScheduleList } from "../components/SceduleList"
+import { NavBar } from "../components/NavBar"
 
 export interface selectedTimeField {
   hour: number
@@ -56,7 +57,8 @@ const Main = () => {
 
   return (
     <MainContainer>
-      <Title>today's schedule</Title>
+      <NavBar />
+      <Title>add today's schedule</Title>
       <Wrap>
         <TextField
           className="title-input"
@@ -81,7 +83,7 @@ const Main = () => {
 export default Main
 
 const MainContainer = styled.div`
-  padding: 20px 30px;
+  padding: 50px 30px;
   min-height: 100vh;
   text-align: center;
   background-color: #f0f0e8;
