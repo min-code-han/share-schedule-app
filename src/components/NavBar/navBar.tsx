@@ -8,7 +8,6 @@ export const NavBar = () => {
     setIsOpenMenu(!isMenuOpen)
   }
 
-  console.log(isMenuOpen)
   return (
     <Nav>
       <Hamburger onClick={toggleMenu}>
